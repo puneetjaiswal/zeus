@@ -14,11 +14,6 @@
     <artifactId>baseapp</artifactId>
     <packaging>jar</packaging>
 
-    <properties>
-        <guice.version>4.1.0</guice.version>
-        <reflections.version>0.9.10</reflections.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>io.dropwizard</groupId>
@@ -27,12 +22,10 @@
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>${guice.version}</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>${reflections.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -68,6 +61,5 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
 

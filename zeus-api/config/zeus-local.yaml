@@ -1,0 +1,40 @@
+dataStore:
+  jdbcUrl: jdbc:mysql://127.0.0.1:3306/zeus
+  user: root
+  password: root123
+  driver: com.mysql.cj.jdbc.Driver
+
+localFileStore:  /opt/tools/scratch
+
+
+managedApps:
+
+modules:
+  - org.zeus.api.ZeusModule
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8091
+
+
+# Logging settings.
+logging:
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+  # Logger-specific levels.
+  loggers:
+    oracle.sparkline.dlap.gateway: DEBUG
+
+  appenders:
+    - type: console
+    - type: file
+      currentLogFilename: /tmp/gateway/gateway-java.log
+      archivedLogFilenamePattern: /tmp/gateway/gateway-java-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 7
+      timeZone: UTC
+      maxFileSize: 100MB
