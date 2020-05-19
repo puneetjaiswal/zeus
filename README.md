@@ -35,7 +35,7 @@ java -jar zeus-api-1.0.0-jar-with-* server ../config/zeus-local.yaml
 
 Populate entities
 ```
-00:17 $ curl -H "Content-Type: application/json" -X POST http://localhost:8080/entity?entityType=TENANT  -d '{  "name": "tenant1Test" }'
+curl -H "Content-Type: application/json" -X POST http://localhost:8080/entity?entityType=TENANT  -d '{  "name": "tenant1Test" }'
 ```
 
 Get all entities
