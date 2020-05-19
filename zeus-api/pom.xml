@@ -24,7 +24,12 @@
         <dependency>
             <groupId>org.zeus</groupId>
             <artifactId>baseapp</artifactId>
-            <version>1.0.0</version>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.zeus</groupId>
+            <artifactId>zeus-dal</artifactId>
+            <version>${parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -99,19 +104,6 @@
                         <id>attach-sources</id>
                         <goals>
                             <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.javalite</groupId>
-                <artifactId>activejdbc-instrumentation</artifactId>
-                <version>${activejdbc.version}</version>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>instrument</goal>
                         </goals>
                     </execution>
                 </executions>

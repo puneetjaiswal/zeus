@@ -5,7 +5,7 @@ import com.google.inject.Singleton;
 import io.dropwizard.setup.Environment;
 import org.zeus.api.config.ZeusConfiguration;
 import org.zeus.baseapp.AppModule;
-import org.zeus.db.JdbcConnectionManager;
+import org.zeus.dal.JdbcConnectionManager;
 
 public class ZeusModule extends AppModule<ZeusConfiguration, Environment> {
     private ZeusConfiguration config;
@@ -20,4 +20,5 @@ public class ZeusModule extends AppModule<ZeusConfiguration, Environment> {
     public JdbcConnectionManager getJdbcConnectionManager() {
         return new JdbcConnectionManager(config.getDataStore());
     }
+
 }

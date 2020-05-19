@@ -8,7 +8,6 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 
 import io.dropwizard.Application;
-import io.dropwizard.Bundle;
 import io.dropwizard.Configuration;
 import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.lifecycle.setup.LifecycleEnvironment;
@@ -89,7 +88,6 @@ public abstract class BaseApp<T extends AppConfiguration> extends Application<T>
   }
 
   /**
-   * When the application runs, this is called after the {@link Bundle}s are run.
    *
    * <p>You generally don't want to override this but if you do, make sure to call up into super to
    * allow the app to configure its Guice wiring correctly and apply anything you set up in {@link
@@ -97,10 +95,9 @@ public abstract class BaseApp<T extends AppConfiguration> extends Application<T>
    *
    * @param configuration the parsed {@link Configuration} object
    * @param environment the application's {@link Environment}
-   * @throws Exception if something goes wrong
    */
   @Override
-  public void run(T configuration, Environment environment) throws Exception {
+  public void run(T configuration, Environment environment) {
     this.injector = configureGuice(configuration, environment);
     logger.info("op=configure_guice injector={}", injector.toString());
     applicationAtRun(configuration, environment, injector);
@@ -118,7 +115,7 @@ public abstract class BaseApp<T extends AppConfiguration> extends Application<T>
    */
   protected void applicationAtRun(T configuration, Environment environment, Injector injector) {}
 
-  private Injector configureGuice(T configuration, Environment environment) throws Exception {
+  private Injector configureGuice(T configuration, Environment environment) {
     appModules.add(new MetricRegistryModule(environment.metrics()));
     appModules.addAll(addModules(configuration, environment));
     Injector injector = Guice.createInjector(ImmutableList.copyOf(appModules));

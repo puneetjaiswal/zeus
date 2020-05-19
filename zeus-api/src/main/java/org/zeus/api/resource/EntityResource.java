@@ -3,10 +3,10 @@ package org.zeus.api.resource;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import org.zeus.db.DbException;
-import org.zeus.db.JdbcConnectionManager;
-import org.zeus.db.entity.AbstractEntity;
-import org.zeus.db.entity.EntityType;
+import org.zeus.dal.DbException;
+import org.zeus.dal.JdbcConnectionManager;
+import org.zeus.dal.entity.AbstractEntity;
+import org.zeus.dal.entity.EntityType;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -29,7 +29,6 @@ import java.util.Optional;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class EntityResource extends AbstractResource {
-
     @Inject
     private JdbcConnectionManager jdbcConnectionManager;
 
@@ -41,10 +40,11 @@ public class EntityResource extends AbstractResource {
     @POST
     public Response updateEntity(@QueryParam("entityType") String entityTypeStr, String jsonPayload) {
         if (Strings.isNullOrEmpty(entityTypeStr)) {
-            throw new WebApplicationException("EntryType can not be null");
+            throw new WebApplicationException("EntryType can not be empty");
         }
         EntityType entityType = EntityType.valueOf(entityTypeStr);
         Optional<String> updatedId;
+        //todo: validations and checks
         try {
             updatedId = jdbcConnectionManager.saveEntity(entityType, jsonPayload);
         } catch (Exception e) {
@@ -73,9 +73,9 @@ public class EntityResource extends AbstractResource {
 
     @POST
     @Path("/{entityType}")
-    public Response getAllEntitiesByIdsrForType(@PathParam("entityType") String entityTypeStr, List<String> idList) {
+    public Response getAllEntitiesByIdsForType(@PathParam("entityType") String entityTypeStr, List<String> idList) {
         EntityType entityType = EntityType.valueOf(entityTypeStr);
-        List<? extends AbstractEntity> entities = null;
+        List<? extends AbstractEntity> entities;
         try {
             entities = jdbcConnectionManager.fetchEntities(entityType, idList);
         } catch (DbException e) {

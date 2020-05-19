@@ -4,9 +4,6 @@ dataStore:
   password: root123
   driver: com.mysql.cj.jdbc.Driver
 
-localFileStore:  /opt/tools/scratch
-
-
 managedApps:
 
 modules:

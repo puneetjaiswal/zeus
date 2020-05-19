@@ -17,9 +17,11 @@ function submitData(url, data, type) {
         statusCode: {
             404: function () {
                 console.log("404 Error in response")
+                $("#pageErrors").html(data)
             },
             500: function () {
                 console.log("500 Error in response")
+                $("#pageErrors").html(data)
             }
         }
     }).always(function () {
@@ -29,10 +31,13 @@ function submitData(url, data, type) {
 function renderConfigSelector() {
     var html = "<table><tr><td>Select entity type</td><td><select name='entityTypeSelector' id='entityTypeSelector' onchange='renderEntitySelector()'></select></td></tr>"
         + "<tr><td>Select entity to edit</td><td><select name='entitySelector' id='entitySelector' onchange='renderEntityEditor()'></select></td></tr>"
-        + "</table>" + "<div id='entityEditorDiv'>"
+        + "</table>"
+        + "<div id='entityEditorDiv'>"
         + "<table><tr><td><div id='entityDetails' style='width: 500px; height: 300px;'></div></td>"
         + "<td><div id='entityDetailsTextArea' style='width: 500px; height: 300px;'></div></td></tr></table>"
-        + "</div> <div id='entityEditorBottom'></div>";
+        + "</div>"
+        + " <div id='entityEditorBottom'></div>"
+        + "<div id='pageErrors'></div>";
 
     $("#entity-editor-place-holder").html(html);
     submitData("/entity", "", "get").done(function (data) {
@@ -71,14 +76,14 @@ function renderEntitySelector() {
 
 function buildNameForEntity(entity, entityType) {
     console.log("buildNameForEntity", entity, entityType)
-    switch (entityType) {
-        case "TENANT":
-
-            return entity.name;
-        default:
-            console.log("entity type not found : ", entityType);
-            return entity[0];
-    }
+    return entity.name;
+    // switch (entityType) {
+    //     case "TENANT":
+    //         return entity.name;
+    //     default:
+    //         console.log("entity type not found : ", entityType);
+    //         return entity[0];
+    // }
 }
 
 function renderEntityEditor() {

@@ -131,7 +131,10 @@
 
     <modules>
         <module>baseapp</module>
+        <module>crypto</module>
+        <module>zeus-dal</module>
         <module>zeus-api</module>
+        <module>zeus-orch</module>
     </modules>
 
     <build>
