@@ -1,0 +1,35 @@
+name: lyftprestoquerylogplugin
+description: Presto plugin libraries for query audit log and query restritcions
+repository: git@github.com:lyft/lyft-presto-querylog-plugin.git
+slack: '#data-platform'
+team_email: data-platform@lyft.com
+pagerduty_escalation_policy: Data Infra Interactive
+
+containers:
+  - name: code
+    command: sleep infinity
+
+groups:
+  - name: dev
+    members:
+      - lyftprestoquerylogplugin.code
+
+tests:
+  - name: unittest
+    type: execution
+    group: lyftprestoquerylogplugin.dev
+    container: lyftprestoquerylogplugin.code
+    command: mvn test
+    reports:
+      presto-querylog-plugin-lyft: presto-querylog-plugin-lyft/target/surefire-reports/index.html
+      presto-querylog-plugin-qubole: presto-querylog-plugin-qubole/target/surefire-reports/index.html
+
+deploy:
+  - name: development
+    legacy: true
+    automatic: true
+
+languages:
+  - java
+
+image_type: library

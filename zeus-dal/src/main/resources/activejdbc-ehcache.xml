@@ -6,11 +6,11 @@
         <ttl unit="seconds">10</ttl>
       </expiry>
       <resources>
-        <heap unit="entries">1000</heap>
+        <heap unit="entries">5000</heap>
       </resources>
       <heap-store-settings>
-        <max-object-graph-size>10</max-object-graph-size>
-        <max-object-size unit="MB">200</max-object-size>
+        <max-object-graph-size>100</max-object-graph-size>
+        <max-object-size unit="MB">500</max-object-size>
       </heap-store-settings>
     </cache-template>
 </config>

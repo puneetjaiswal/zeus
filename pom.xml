@@ -130,6 +130,7 @@
     </dependencyManagement>
 
     <modules>
+	<module>presto-querylogger</module>
         <module>baseapp</module>
         <module>crypto</module>
         <module>zeus-dal</module>
