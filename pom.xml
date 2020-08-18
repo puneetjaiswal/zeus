@@ -29,8 +29,8 @@
         <activejdbc.version>2.3.2-j8</activejdbc.version>
         <mysqlconnector.version>8.0.17</mysqlconnector.version>
 
-        <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
-        <puppycrawl.tools.checkstyle.version>7.7</puppycrawl.tools.checkstyle.version>
+        <maven.checkstyle.plugin.version>3.1.1</maven.checkstyle.plugin.version>
+        <puppycrawl.tools.checkstyle.version>8.29</puppycrawl.tools.checkstyle.version>
         <checkstyle.violation.ignore>NonEmptyAtclauseDescription,JavadocMethod
         </checkstyle.violation.ignore>
     </properties>
@@ -130,6 +130,7 @@
     </dependencyManagement>
 
     <modules>
+        <module>prestodb-querylog-plugin</module>
         <module>baseapp</module>
         <module>crypto</module>
         <module>zeus-dal</module>
